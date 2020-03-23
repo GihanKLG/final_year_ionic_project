@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Environment } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   constructor(
@@ -20,6 +20,15 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      Environment.setEnv({
+        // api key for server
+        'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCFUD8M2qMNhFEuaDai_fjJC46MEraCALc',
+
+        // api key for local development
+        'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCFUD8M2qMNhFEuaDai_fjJC46MEraCALc'
+      });
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
